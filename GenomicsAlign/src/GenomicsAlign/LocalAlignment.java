@@ -50,8 +50,7 @@ public class LocalAlignment implements Alignment {
                     int sub = mytable.m_table[i][j].subScore;
                     int del = mytable.m_table[i][j].delScore;
                     int ins = mytable.m_table[i][j].insScore;
-                    int max = Math.max(sub,Math.max(del,ins));
-
+                    int max = Math.max(sub,Math.max(del,Math.max(0,ins)));
                     if(sub == max)
                         dt.setcell(dt.getcell(i-1,j-1)+ curr_val, i-1, j-1);
 
@@ -358,6 +357,6 @@ public class LocalAlignment implements Alignment {
     {
             return Math.max(sdi.subScore, 
                         Math.max(sdi.delScore,
-                        sdi.insScore));
+                        Math.max(0,sdi.insScore)));
     }
 }
